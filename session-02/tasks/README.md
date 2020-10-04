@@ -1,0 +1,1 @@
+Las carpetas con la solución del challenge #02 van aquí.
