@@ -37,7 +37,9 @@ public class CustomersController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Customer> findById(@PathVariable Long id) {
+
         var optionalCustomer = this.customersService.findById(id);
+
          return optionalCustomer.map(
                 customer -> new ResponseEntity<>(customer, HttpStatus.OK)
         ).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));

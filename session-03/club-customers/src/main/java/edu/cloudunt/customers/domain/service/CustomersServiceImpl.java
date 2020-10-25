@@ -4,6 +4,7 @@ import edu.cloudunt.customers.domain.dto.Customer;
 import edu.cloudunt.customers.repository.CustomersRepository;
 import edu.cloudunt.customers.repository.mapper.CustomerMapper;
 import edu.cloudunt.customers.repository.model.CustomerEntity;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +12,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class CustomersServiceImpl implements CustomersService {
 
-    @Autowired
-    private CustomersRepository customersRepository;
+    private final CustomersRepository customersRepository;
 
     @Override
     public Customer save(Customer customer) {
