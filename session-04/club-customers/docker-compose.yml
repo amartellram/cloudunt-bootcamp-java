@@ -1,0 +1,40 @@
+version: '3.2'
+
+services:
+  club-db:
+    image: mysql:8
+    container_name: club-db
+    restart: always
+    ports:
+      - '3306:3306'
+    networks:
+      - club-customers-network
+    environment:
+      MYSQL_ROOT_PASSWORD: clubdb
+      MYSQL_DATABASE: clubdb
+  club-notifications:
+    image: amartellram/club-notifications
+    container_name: club-notifications
+    restart: always
+    ports:
+    - '8081:8081'
+    networks:
+      - club-customers-network
+  club-customers:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: club-customers
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    depends_on:
+      - club-db
+      - club-notifications
+    ports:
+      - '8080:8080'
+    networks:
+      - club-customers-network
+
+networks:
+  club-customers-network:
+    driver: bridge

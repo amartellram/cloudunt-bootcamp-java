@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto:  update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  datasource:
+    url: jdbc:mysql://club-db:3306/clubdb?&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: clubdb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+app:
+  client:
+    notification:
+      url: http://club-notifications:8081/notifications
+
